@@ -3,7 +3,7 @@ import './home.css';
 
 const Home = () => {
   const [formData, setFormData] = useState({
-    inputText: '',
+    domain: '',
     server: '',
     instance: '',
   });
@@ -37,22 +37,45 @@ const Home = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('API 요청 데이터:', formData);
+
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await response.json();
+
+      if (data.status === 'success') {
+        console.log('응답 데이터:', data);
+        alert('로그인 성공!');
+      } else {
+        console.error('로그인 실패:', data.message || '알 수 없는 오류');
+        alert(`로그인 실패: ${data.message || '다시 시도해주세요.'}`);
+      }
+    } catch (error) {
+      console.error('네트워크 오류:', error);
+      alert('네트워크 오류가 발생했습니다.');
+    }
   };
 
   return (
     <div className="home-container">
       <form className="input-form" onSubmit={handleSubmit}>
-        <label htmlFor="inputText">도메인 입력</label>
+        <label htmlFor="domain">도메인 입력</label>
         <input
           type="text"
-          id="inputText"
-          name="inputText"
+          id="domain"
+          name="domain"
           maxLength="100"
           placeholder="예시) @domain.com"
-          value={formData.inputText}
+          value={formData.domain}
           onChange={handleChange}
         />
 
@@ -66,7 +89,7 @@ const Home = () => {
           </div>
           {dropdownOpen.server && (
             <ul className="dropdown-menu">
-              {['Alpha', 'Stage', 'Real'].map((server) => (
+              {['alpha', 'stage', 'real'].map((server) => (
                 <li
                   key={server}
                   onClick={() => handleDropdownSelect('server', server)}
@@ -88,7 +111,7 @@ const Home = () => {
           </div>
           {dropdownOpen.instance && (
             <ul className="dropdown-menu">
-              {['KR1', 'JP1', 'JP2', 'GOV'].map((instance) => (
+              {['kr1', 'jp1', 'jp2', 'gov'].map((instance) => (
                 <li
                   key={instance}
                   onClick={() => handleDropdownSelect('instance', instance)}
