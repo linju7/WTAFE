@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './home.css';
 
 const Home = () => {
@@ -12,6 +13,8 @@ const Home = () => {
     server: false,
     instance: false,
   });
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,7 +57,7 @@ const Home = () => {
 
       if (data.status === 'success') {
         console.log('응답 데이터:', data);
-        alert('로그인 성공!');
+        navigate('/mainpage'); // 로그인 성공 시 mainpage로 이동
       } else {
         console.error('로그인 실패:', data.message || '알 수 없는 오류');
         alert(`로그인 실패: ${data.message || '다시 시도해주세요.'}`);
