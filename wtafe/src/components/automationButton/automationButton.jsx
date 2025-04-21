@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './automationButton.css';
 
-const AutomationButton = ({ label, apiEndpoint, method = 'GET', body = null, headers = {}, onSuccess, onError }) => {
+const AutomationButton = ({ label, apiEndpoint, method = 'GET', requestBody = null, headers = {}, onSuccess, onError }) => {
   const handleClick = async () => {
     try {
       const response = await fetch(apiEndpoint, {
@@ -11,7 +11,7 @@ const AutomationButton = ({ label, apiEndpoint, method = 'GET', body = null, hea
           'Content-Type': 'application/json',
           ...headers,
         },
-        body: body ? JSON.stringify(body) : null,
+        body: requestBody ? JSON.stringify(requestBody) : null,
       });
 
       if (response.ok) {
