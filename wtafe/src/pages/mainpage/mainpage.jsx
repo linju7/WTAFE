@@ -17,13 +17,24 @@ const MainPage = () => {
     <div className="mainpage-container">
       <h1>메인 페이지</h1>
       <p>아래 버튼을 눌러 API를 호출하세요.</p>
+
+
       <AutomationButton
-        label="API 호출"
-        apiEndpoint="http://127.0.0.1:8000/api/example"
-        method="GET"
+        label="구성원 추가"
+        apiEndpoint="http://127.0.0.1:8000/api/user/create"
+        method="POST"
+        requestBody = {
+          {
+            instance: "jp2",
+            server : "real"
+          }
+        }
         onSuccess={handleSuccess}
         onError={handleError}
       />
+
+
+
     </div>
   );
 };
