@@ -1,8 +1,8 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
-import HomeDropdown from '../../components/homeComponents/homeDropdown';
-import HomeFormHandler from '../../components/homeComponents/homeFormHandler';
+import useFormHandler from '../../hooks/useFormHandler';
+import Dropdown from '../../components/homeDropdown/Dropdown';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -13,7 +13,7 @@ const Home = () => {
     handleDropdownSelect,
     toggleDropdown,
     handleSubmit,
-  } = HomeFormHandler(navigate);
+  } = useFormHandler(navigate);
 
   return (
     <div className="home-container">
@@ -29,7 +29,7 @@ const Home = () => {
           onChange={handleChange}
         />
 
-        <HomeDropdown
+        <Dropdown
           label="서버 선택"
           options={['alpha', 'stage', 'real']}
           selectedValue={formData.server}
@@ -38,7 +38,7 @@ const Home = () => {
           onSelect={(value) => handleDropdownSelect('server', value)}
         />
 
-        <HomeDropdown
+        <Dropdown
           label="인스턴스 선택"
           options={['kr1', 'jp1', 'jp2', 'gov']}
           selectedValue={formData.instance}

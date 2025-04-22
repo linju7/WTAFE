@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { setServer, setInstance } from '../../redux/slices/formSlice'; // 경로 수정
+import { setServer, setInstance } from '../redux/slices/formSlice';
 
-const HomeFormHandler = (navigate) => {
+const useFormHandler = (navigate) => {
   const [formData, setFormData] = useState({
     domain: '',
     server: '',
@@ -83,4 +83,4 @@ const HomeFormHandler = (navigate) => {
   };
 };
 
-export default HomeFormHandler;
+export default useFormHandler;
