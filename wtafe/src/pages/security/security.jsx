@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux'; // useSelector 추가
-import { login } from '../../redux/slices/authSlice'; // login 액션 import
+import { useDispatch } from 'react-redux'; // useSelector 추가
+import { auth } from '../../redux/slices/authSlice'; // login 액션 import
 import './security.css';
-import store from '../../redux/store'; // Redux store import
 
 const Security = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch(); // Redux dispatch 초기화
-  const isAuthenticated = useSelector((state) => state.auth?.isAuthenticated); // Redux 상태 확인
 
   const handleChange = (e) => {
     setPassword(e.target.value);
@@ -33,8 +31,7 @@ const Security = () => {
 
       if (data.status === 'success') {
         alert('비밀번호 인증 성공!');
-        dispatch(login()); // Redux 상태 업데이트
-        console.log('Redux auth 상태:', isAuthenticated); // 상태 확인
+        dispatch(auth()); // Redux 상태 업데이트
         navigate('/home'); // Home 페이지로 이동
       } else {
         alert(`비밀번호 인증 실패: ${data.message || '다시 시도해주세요.'}`);

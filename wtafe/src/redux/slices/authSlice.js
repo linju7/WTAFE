@@ -8,14 +8,14 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    login(state) {
+    auth(state) {
       state.isAuthenticated = true; // 인증 성공 시 상태 업데이트
     },
-    logout(state) {
-      state.isAuthenticated = false; // 로그아웃 시 상태 초기화
+    authout(state) {
+      state.isAuthenticated = false; // 종료 시 상태 업데이트
     },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { auth, authout } = authSlice.actions;
 export default authSlice.reducer;

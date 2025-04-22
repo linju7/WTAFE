@@ -2,6 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux'; 
 import './mainpage.css';
 import AutomationButton from '../../components/automationButton/automationButton';
+import GoToHomeButton from '../../components/gotoHomeButton/gotoHomeButton';
 
 const MainPage = () => {
 
@@ -19,6 +20,8 @@ const MainPage = () => {
 
   return (
     <div className="mainpage-container">
+      <GoToHomeButton />
+      
       <h1>메인 페이지</h1>
       <p>아래 버튼을 눌러 API를 호출하세요.</p>
 
