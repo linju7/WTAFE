@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import formReducer from './slices/formSlice';
+import authReducer from './slices/authSlice'; // authSlice 추가
 
 const store = configureStore({
   reducer: {
-    form: formReducer, // formSlice를 스토어에 추가
+    form: formReducer,
+    auth: authReducer, // authReducer 추가
   },
 });
 

@@ -38,7 +38,6 @@ const MainPage = () => {
       />
 
 
-
     </div>
   );
 };
