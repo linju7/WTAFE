@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { setServer, setInstance } from '../../redux/slices/formSlice';
 import { useNavigate } from 'react-router-dom';
 import './home.css';
 
@@ -14,6 +16,7 @@ const Home = () => {
     instance: false,
   });
 
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -30,6 +33,13 @@ const Home = () => {
       [name]: value,
     }));
     setDropdownOpen((prev) => ({ ...prev, [name]: false }));
+
+    // Redux 상태 업데이트
+    if (name === 'server') {
+      dispatch(setServer(value));
+    } else if (name === 'instance') {
+      dispatch(setInstance(value));
+    }
   };
 
   const toggleDropdown = (name) => {
@@ -42,7 +52,6 @@ const Home = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('API 요청 데이터:', formData);
 
     try {
       const response = await fetch('http://127.0.0.1:8000/api/login', {

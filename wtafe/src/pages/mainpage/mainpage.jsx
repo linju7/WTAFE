@@ -1,8 +1,12 @@
 import React from 'react';
+import { useSelector } from 'react-redux'; 
 import './mainpage.css';
 import AutomationButton from '../../components/automationButton/automationButton';
 
 const MainPage = () => {
+
+  const { server, instance } = useSelector((state) => state.form);
+
   const handleSuccess = (data) => {
     console.log('API 호출 성공:', data);
     alert(data.message || 'API 호출 성공!');
@@ -25,8 +29,8 @@ const MainPage = () => {
         method="POST"
         requestBody = {
           {
-            instance: "jp2",
-            server : "real"
+            instance: instance,
+            server : server
           }
         }
         onSuccess={handleSuccess}
