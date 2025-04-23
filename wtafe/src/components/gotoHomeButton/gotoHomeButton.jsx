@@ -18,7 +18,7 @@ const GoToHomeButton = () => {
 
       if (data.status === 'success') {
         alert('로그아웃 성공!');
-        navigate('/'); // 루트 페이지로 이동
+        setTimeout(() => navigate('/'), 500); // 애니메이션 후 이동
       } else {
         alert(`로그아웃 실패: ${data.message || '다시 시도해주세요.'}`);
       }

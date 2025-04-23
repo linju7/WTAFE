@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './automationButton.css';
 
 const AutomationButton = ({ label, apiEndpoint, method = 'GET', requestBody = null, headers = {}, onSuccess, onError }) => {
+  const [isShaking, setIsShaking] = useState(false);
+
   const handleClick = async () => {
     try {
       const response = await fetch(apiEndpoint, {
@@ -29,8 +31,17 @@ const AutomationButton = ({ label, apiEndpoint, method = 'GET', requestBody = nu
     }
   };
 
+  const handleMouseEnter = () => {
+    setIsShaking(true);
+    setTimeout(() => setIsShaking(false), 500); // 흔들림 효과를 0.5초 동안 적용
+  };
+
   return (
-    <button className="automation-button" onClick={handleClick}>
+    <button
+      className={`automation-button ${isShaking ? 'shake' : ''}`}
+      onClick={handleClick}
+      onMouseEnter={handleMouseEnter} // 마우스 오버 시 흔들림 효과
+    >
       {label}
     </button>
   );

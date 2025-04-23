@@ -24,7 +24,7 @@ const Home = () => {
           id="domain"
           name="domain"
           maxLength="100"
-          placeholder="예시) @domain.com"
+          placeholder="예시) domain.com"
           value={formData.domain}
           onChange={handleChange}
         />
