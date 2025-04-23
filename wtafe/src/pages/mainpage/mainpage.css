@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+  background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); /* Home 페이지와 동일한 배경색 */
   font-family: 'Arial', sans-serif;
   color: #333;
 }

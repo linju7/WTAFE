@@ -7,15 +7,36 @@
   font-size: 16px;
   font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .automation-button:hover {
   background-color: #45a049;
-  transform: scale(1.05);
+  transform: scale(1.1); /* 버튼이 커짐 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 .automation-button:active {
   background-color: #388e3c;
-  transform: scale(0.95);
+  transform: scale(0.95); /* 클릭 시 살짝 작아짐 */
+}
+
+.automation-button.shake {
+  animation: shake 0.5s ease-in-out; /* 흔들림 애니메이션 */
+}
+
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
 }

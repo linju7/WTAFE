@@ -40,8 +40,8 @@ const useFormHandler = (navigate) => {
 
   const toggleDropdown = (name) => {
     setDropdownOpen((prev) => {
-      const newState = { server: false, instance: false };
-      newState[name] = !prev[name];
+      const newState = { server: false, instance: false }; // 모든 드롭다운 닫기
+      newState[name] = !prev[name]; // 클릭한 드롭다운만 토글
       return newState;
     });
   };

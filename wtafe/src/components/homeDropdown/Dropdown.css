@@ -1,31 +1,111 @@
+/* 드롭다운 컨테이너 */
 .dropdown {
-    margin-bottom: 1rem;
+  position: relative;
+  margin-bottom: 1rem;
+  z-index: 10; /* 드롭다운이 배경 위에 표시되도록 설정 */
+}
+
+/* 드롭다운 헤더 */
+.dropdown-header {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background: #fff;
+  cursor: pointer;
+  text-align: center;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-header:hover {
+  background: #f0f0f0;
+  transform: scale(1.05); /* 살짝 커지는 효과 */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* 드롭다운 메뉴 */
+.dropdown-menu {
+  position: absolute;
+  top: 0;
+  left: 100%; /* 오른쪽으로 펼쳐지도록 설정 */
+  transform: translateX(-20px) scaleX(0); /* 초기 상태에서 숨김 */
+  transform-origin: left; /* 애니메이션 시작점 */
+  width: 200px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0; /* 초기 상태에서 투명 */
+}
+
+.dropdown-menu.open {
+  transform: translateX(0) scaleX(1); /* 오른쪽으로 펼쳐짐 */
+  opacity: 1; /* 보이도록 설정 */
+}
+
+/* 드롭다운 항목 */
+.dropdown-menu li {
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  width: 100%;
+}
+
+.dropdown-menu li:hover {
+  background: #ffecd2;
+  transform: translateX(10px); /* 살짝 오른쪽으로 이동 */
+}
+
+.dropdown-menu li:active {
+  background: #fcb69f;
+  transform: scale(0.95); /* 클릭 시 살짝 작아짐 */
+}
+
+/* 배경 어두워짐 효과 */
+.dropdown-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5); /* 어두운 배경 */
+  z-index: 5; /* 드롭다운 뒤에 표시되도록 설정 */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none; /* 초기 상태에서 클릭 불가능 */
+}
+
+.dropdown-backdrop.open {
+  opacity: 1;
+  pointer-events: auto; /* 드롭다운이 열리면 클릭 가능 */
+}
+
+/* 흔들림 효과 */
+@keyframes shake {
+  0%, 100% {
+    transform: translateX(0);
   }
-  
-  .dropdown-header {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    cursor: pointer;
-    background-color: #f9f9f9;
+  25% {
+    transform: translateX(-2px);
   }
-  
-  .dropdown-menu {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #fff;
-    position: absolute;
-    z-index: 1000;
+  50% {
+    transform: translateX(2px);
   }
-  
-  .dropdown-menu li {
-    padding: 10px;
-    cursor: pointer;
+  75% {
+    transform: translateX(-2px);
   }
-  
-  .dropdown-menu li:hover {
-    background-color: #f0f0f0;
-  }
+}
+
+.dropdown-header.shake {
+  animation: shake 0.5s ease-in-out;
+}
