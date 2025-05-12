@@ -1,6 +1,9 @@
 /* 드롭다운 컨테이너 */
 .dropdown {
   position: relative;
+  display: inline-block;
+  width: auto; /* 기본적으로 크기를 내용에 맞게 설정 */
+  min-width: 200px; /* 최소 너비 설정 */
   margin-bottom: 1rem;
   z-index: 10; /* 드롭다운이 배경 위에 표시되도록 설정 */
 }
@@ -8,10 +11,13 @@
 /* 드롭다운 헤더 */
 .dropdown-header {
   padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  background: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #fff;
   cursor: pointer;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* 텍스트가 너무 길면 말줄임표 추가 */
   text-align: center;
   font-size: 1rem;
   transition: all 0.3s ease;
@@ -27,19 +33,20 @@
 /* 드롭다운 메뉴 */
 .dropdown-menu {
   position: absolute;
-  top: 0;
-  left: 100%; /* 오른쪽으로 펼쳐지도록 설정 */
-  transform: translateX(-20px) scaleX(0); /* 초기 상태에서 숨김 */
-  transform-origin: left; /* 애니메이션 시작점 */
-  width: 200px;
+  top: 0; /* 드롭다운 헤더와 같은 높이에서 시작 */
+  left: 100%; /* 헤더의 오른쪽에 나타나도록 설정 */
+  z-index: 1000;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-left: 5px; /* 헤더와 약간의 간격 추가 */
   padding: 0;
-  margin: 0;
   list-style: none;
-  background: #ffffff;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  z-index: 20;
+  width: auto; /* 내용에 맞게 크기 조정 */
+  min-width: 200px; /* 최소 너비 설정 */
+  max-width: 400px; /* 최대 너비 설정 */
+  transform: translateY(-20px) scaleY(0); /* 초기 상태에서 숨김 */
+  transform-origin: top; /* 애니메이션 시작점 */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -48,21 +55,22 @@
 }
 
 .dropdown-menu.open {
-  transform: translateX(0) scaleX(1); /* 오른쪽으로 펼쳐짐 */
+  transform: translateY(0) scaleY(1); /* 아래로 펼쳐짐 */
   opacity: 1; /* 보이도록 설정 */
 }
 
-/* 드롭다운 항목 */
+/* 드롭다운 메뉴 항목 */
 .dropdown-menu li {
   padding: 10px;
-  text-align: left;
   cursor: pointer;
+  white-space: nowrap; /* 텍스트 줄바꿈 방지 */
+  text-align: left;
   transition: background 0.3s ease, transform 0.2s ease;
-  width: 100%;
+  width: 50%;
 }
 
 .dropdown-menu li:hover {
-  background: #ffecd2;
+  background-color: #f0f0f0;
   transform: translateX(10px); /* 살짝 오른쪽으로 이동 */
 }
 
