@@ -9,7 +9,6 @@ const Home = () => {
   const {
     formData,
     dropdownOpen,
-    handleChange,
     handleDropdownSelect,
     toggleDropdown,
     handleSubmit,
@@ -18,15 +17,13 @@ const Home = () => {
   return (
     <div className="home-container">
       <form className="input-form" onSubmit={handleSubmit}>
-        <label htmlFor="domain">도메인 입력</label>
-        <input
-          type="text"
-          id="domain"
-          name="domain"
-          maxLength="100"
-          placeholder="예시) domain.com"
-          value={formData.domain}
-          onChange={handleChange}
+        <Dropdown
+          label="도메인 선택"
+          options={['kr1-prm0825.by-works.com', 'jp2-adv01.wdomain3.com']}
+          selectedValue={formData.domain}
+          isOpen={dropdownOpen.domain}
+          onToggle={() => toggleDropdown('domain')}
+          onSelect={(value) => handleDropdownSelect('domain', value)}
         />
 
         <Dropdown
