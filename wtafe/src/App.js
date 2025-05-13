@@ -13,7 +13,7 @@ function App() {
 
 
         {/* 첫 페이지 - 보안코드 입력 시 서비스 접근 가능  */}
-        <Route path="/" element={<Security />} />
+        <Route path="/" element={<Home />} />
 
         {/* 홈 페이지 - 자동화 환경 세팅 (서버, 인스턴스, 도메인 설정 페이지) */}
         <Route

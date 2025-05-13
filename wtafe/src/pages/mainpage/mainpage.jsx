@@ -40,6 +40,21 @@ const MainPage = () => {
         onError={handleError}
       />
 
+      <AutomationButton
+        label="구성원 수정"
+        apiEndpoint="http://127.0.0.1:8000/api/user/modify"
+        method="POST"
+        requestBody = {
+          {
+            instance: instance,
+            server : server
+          }
+        }
+        onSuccess={handleSuccess}
+        onError={handleError}
+      />
+
+
 
     </div>
   );
