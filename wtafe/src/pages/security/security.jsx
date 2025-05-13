@@ -6,21 +6,12 @@ import './security.css';
 
 const Security = () => {
   const [password, setPassword] = useState('');
-  const [isFocused, setIsFocused] = useState(false); // 입력 필드 포커스 상태
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setPassword(e.target.value);
-  };
-
-  const handleFocus = () => {
-    setIsFocused(true); // 포커스 상태 활성화
-  };
-
-  const handleBlur = () => {
-    setIsFocused(false); // 포커스 상태 비활성화
   };
 
   const handleSubmit = async (e) => {
@@ -55,26 +46,6 @@ const Security = () => {
 
   return (
     <div className="security-container">
-      <div className={`bear-container ${isFocused ? 'focused' : ''}`}>
-        <div className="bear">
-          <div className="ears">
-            <div className="ear left"></div>
-            <div className="ear right"></div>
-          </div>
-          <div className="face">
-            <div className="eyebrows"> {/* 눈썹 추가 */}
-              <div className="eyebrow left"></div>
-              <div className="eyebrow right"></div>
-            </div>
-            <div className="eyes">
-              <div className="eye left"></div>
-              <div className="eye right"></div>
-            </div>
-            <div className="nose"></div>
-            <div className="mouth"></div>
-          </div>
-        </div>
-      </div>
       <form className="security-form" onSubmit={handleSubmit}>
         <label htmlFor="password">접속 코드</label>
         <input
@@ -84,8 +55,6 @@ const Security = () => {
           placeholder="접속 코드를 입력하세요."
           value={password}
           onChange={handleChange}
-          onFocus={handleFocus} // 포커스 이벤트
-          onBlur={handleBlur} // 블러 이벤트
           required
         />
         <button type="submit" className="submit-button" disabled={loading}>
