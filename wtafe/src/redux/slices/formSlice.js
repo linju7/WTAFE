@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  server: '',
-  instance: '',
+  server: 'real', // 초기값 설정
+  instance: 'kr1', // 초기값 설정
 };
 
 const formSlice = createSlice({
@@ -16,8 +16,8 @@ const formSlice = createSlice({
       state.instance = action.payload;
     },
     resetForm(state) {
-      state.server = '';
-      state.instance = '';
+      state.server = 'real'; // 초기값으로 리셋
+      state.instance = 'kr1'; // 초기값으로 리셋
     },
   },
 });

@@ -19,8 +19,8 @@ const Home = () => {
       <form className="input-form" onSubmit={handleSubmit}>
         <Dropdown
           label="도메인 선택"
-          options={['kr1-prm0825.by-works.com', 'jp2-adv01.wdomain3.com']}
-          selectedValue={formData.domain}
+          options={['@kr1-prm0825.by-works.com', '@jp2-adv01.wdomain3.com']}
+          selectedValue={formData.domain || '@kr1-prm0825.by-works.com'}
           isOpen={dropdownOpen.domain}
           onToggle={() => toggleDropdown('domain')}
           onSelect={(value) => handleDropdownSelect('domain', value)}
@@ -29,7 +29,7 @@ const Home = () => {
         <Dropdown
           label="서버 선택"
           options={['alpha', 'stage', 'real']}
-          selectedValue={formData.server}
+          selectedValue={formData.server || 'real'}
           isOpen={dropdownOpen.server}
           onToggle={() => toggleDropdown('server')}
           onSelect={(value) => handleDropdownSelect('server', value)}
@@ -38,7 +38,7 @@ const Home = () => {
         <Dropdown
           label="인스턴스 선택"
           options={['kr1', 'jp1', 'jp2', 'gov']}
-          selectedValue={formData.instance}
+          selectedValue={formData.instance || 'kr1'}
           isOpen={dropdownOpen.instance}
           onToggle={() => toggleDropdown('instance')}
           onSelect={(value) => handleDropdownSelect('instance', value)}

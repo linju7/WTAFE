@@ -15,7 +15,7 @@ const MainPage = () => {
 
   const handleError = (error) => {
     console.error('API 호출 실패:', error);
-    alert('API 호출 실패!');
+    alert(error.message || 'API 호출 실패!');
   };
 
   return (
@@ -57,6 +57,20 @@ const MainPage = () => {
       <AutomationButton
         label="구성원 조회"
         apiEndpoint="http://127.0.0.1:8000/api/user/retreive"
+        method="POST"
+        requestBody = {
+          {
+            instance: instance,
+            server : server
+          }
+        }
+        onSuccess={handleSuccess}
+        onError={handleError}
+      />
+
+      <AutomationButton
+        label="구성원 삭제"
+        apiEndpoint="http://127.0.0.1:8000/api/user/delete"
         method="POST"
         requestBody = {
           {

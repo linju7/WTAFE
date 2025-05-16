@@ -4,12 +4,13 @@ import { setServer, setInstance } from '../redux/slices/formSlice';
 
 const useFormHandler = (navigate) => {
   const [formData, setFormData] = useState({
-    domain: '',
-    server: '',
-    instance: '',
+    domain: '@kr1-prm0825.by-works.com', // 디폴트 값
+    server: 'real', // 디폴트 값
+    instance: 'kr1', // 디폴트 값
   });
 
   const [dropdownOpen, setDropdownOpen] = useState({
+    domain: false,
     server: false,
     instance: false,
   });
@@ -24,30 +25,38 @@ const useFormHandler = (navigate) => {
     }));
   };
 
-  const handleDropdownSelect = (name, value) => {
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
+  const handleDropdownSelect = (field, value) => {
+    setFormData((prev) => ({
+      ...prev,
+      [field]: value,
     }));
-    setDropdownOpen((prev) => ({ ...prev, [name]: false }));
+    setDropdownOpen((prev) => ({ ...prev, [field]: false }));
 
-    if (name === 'server') {
+    if (field === 'server') {
       dispatch(setServer(value));
-    } else if (name === 'instance') {
+    } else if (field === 'instance') {
       dispatch(setInstance(value));
     }
   };
 
-  const toggleDropdown = (name) => {
-    setDropdownOpen((prev) => {
-      const newState = { server: false, instance: false }; // 모든 드롭다운 닫기
-      newState[name] = !prev[name]; // 클릭한 드롭다운만 토글
-      return newState;
-    });
+  const toggleDropdown = (field) => {
+    setDropdownOpen((prev) => ({
+      ...prev,
+      [field]: !prev[field],
+    }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // formData 값 검증 및 초기값 보장
+    const validatedFormData = {
+      domain: formData.domain || '@kr1-prm0825.by-works.com',
+      server: formData.server || 'real',
+      instance: formData.instance || 'kr1',
+    };
+
+    console.log('Validated Form Data:', validatedFormData); // 디버깅용 로그
 
     try {
       const response = await fetch('http://127.0.0.1:8000/api/login', {
@@ -55,7 +64,7 @@ const useFormHandler = (navigate) => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify(validatedFormData), // JSON 직렬화
       });
 
       const data = await response.json();
