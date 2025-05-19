@@ -4,7 +4,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/home/home";
 import MainPage from "./pages/mainpage/mainpage";
-import Security from "./pages/security/security";
+import UserPage from "./pages/user/user";
 
 function App() {
   return (
@@ -25,12 +25,20 @@ function App() {
           }
         />
 
-        {/* 메인 페이지 - 자동화 환경 세팅 성공 시, 자동화 API 호출 가능함 */}
+        {/* 메인 페이지 - 어떤 동작을 수행할지 고르는 페이지 */}
         <Route
           path="/mainpage"
           element={
             
               <MainPage />
+          }
+        />
+
+        <Route
+          path="/user"
+          element={
+            
+              <UserPage />
           }
         />
 
